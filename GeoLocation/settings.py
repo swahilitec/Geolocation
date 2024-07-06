@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ro8d%n$y)wdf6a!--m0e*q*+3z&-ep-lgvxqygp*qj)%)_8b42
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['geolocation-geum.onrender.com', '127.0.0.1']
 
 
 # Application definition
