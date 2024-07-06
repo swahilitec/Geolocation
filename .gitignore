@@ -1,0 +1,83 @@
+# General
+.DS_Store
+Thumbs.db
+*data.json
+*.log
+*.log.*
+*.log-*
+*.log/*
+*.log.*
+*data
+*data.*
+*data-*
+
+#the text.txt file
+text.txt
+
+
+# Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual Environment
+myenv/
+.myenv
+*.env
+.env
+.env.local
+
+# Django
+*.log
+*.pot
+__pycache__/
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# VS Code
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IDE files
+.idea/
+
+# Miscellaneous
+*.iml
+.sorl-thumbnail/
+
+# Compiled files
+*.so
+*.class
+*.dll
+*.exe
+*.pdb
+*.mdb
+*.opendb
+*.idb
+*.exp
+*.lib
+*.pch
+*.sbr
+*.a
+*.lo
+*.o
+*.bundle
+*.rbc
+*.rb~
+*.os
+*.obj
+*.dockerfile
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker-compose.yaml
+docker-compose.override.yml
+*.dockerfile
+*.docker-compose.yml
+*.docker-compose.yaml
+*.docker-compose.override.yml
