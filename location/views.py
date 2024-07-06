@@ -1,5 +1,7 @@
 # location/views.py
 
+# views.py
+
 import requests
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
@@ -10,13 +12,13 @@ logger = logging.getLogger(__name__)
 @require_http_methods(["GET"])
 def get_location(request):
     # Get IP address
-    ip_address = request.META.get('HTTP_X_FORWARDED_FOR', '') or request.META.get('REMOTE_ADDR')
-    logger.info(f"Received request from IP: {ip_address}")
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip_address = x_forwarded_for.split(',')[0].strip()
+    else:
+        ip_address = request.META.get('REMOTE_ADDR')
     
-    # If localhost, use a fallback IP for testing
-    if ip_address in ('127.0.0.1', '::1'):
-        ip_address = '8.8.8.8'  # Google's public DNS IP
-        logger.info(f"Local testing detected. Using fallback IP: {ip_address}")
+    logger.info(f"Received request from IP: {ip_address}")
     
     # Initialize variables
     country = region = city = town = state = latitude = longitude = None
@@ -30,6 +32,10 @@ def get_location(request):
         
         response.raise_for_status()
         location_data = response.json()
+
+        if location_data.get('error'):
+            logger.warning(f"ipapi.co returned an error: {location_data.get('reason')}")
+            return JsonResponse({'error': location_data.get('reason')}, status=400)
 
         # Extract relevant information
         country = location_data.get('country_name')
